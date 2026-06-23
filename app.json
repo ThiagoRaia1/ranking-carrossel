@@ -2,6 +2,14 @@
   "expo": {
     "name": "ranking-carrossel",
     "slug": "ranking-carrossel",
+    "plugins": [
+      [
+        "expo-router",
+        {
+          "root": "./src/app"
+        }
+      ]
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
