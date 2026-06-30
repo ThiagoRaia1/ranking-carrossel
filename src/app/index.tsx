@@ -63,20 +63,15 @@ export default function Home() {
   const diasUteisRestantes = getRemainingBusinessDays();
 
   return (
-    <>
-      <Image
-        source={require("@/assets/LogoEletubos.png")}
-        style={{
-          width: 500,
-          height: 100,
-          alignSelf: "center",
-          marginVertical: 20,
-        }}
-      />
+    <View
+      style={{
+        justifyContent: "center",
+        height: "95%",
+      }}
+    >
       <View
         style={{
           flexDirection: "row",
-          alignSelf: "center",
           width: 1200,
           justifyContent: "space-between",
         }}
@@ -89,13 +84,16 @@ export default function Home() {
         >
           META MENSAL: <Text style={{ color: "#0A8F3D" }}>145000 kg</Text>
         </Text>
+
         <Text
           style={{
             fontSize: 40,
             fontWeight: "bold",
+            textAlign: "center",
           }}
         >
-          TOTAL VENDIDO: <Text style={{ color: "#0A8F3D" }}>103071 kg</Text>
+          DIAS ÚTEIS RESTANTES:{" "}
+          <Text style={{ color: "#0A8F3D" }}>{diasUteisRestantes}</Text>
         </Text>
       </View>
 
@@ -103,11 +101,9 @@ export default function Home() {
         style={{
           fontSize: 40,
           fontWeight: "bold",
-          textAlign: "center",
         }}
       >
-        DIAS ÚTEIS RESTANTES:{" "}
-        <Text style={{ color: "#0A8F3D" }}>{diasUteisRestantes}</Text>
+        TOTAL VENDIDO: <Text style={{ color: "#0A8F3D" }}>103071 kg</Text>
       </Text>
 
       <View
@@ -224,6 +220,6 @@ export default function Home() {
           </View>
         ))}
       </View>
-    </>
+    </View>
   );
 }

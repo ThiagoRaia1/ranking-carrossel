@@ -1,5 +1,4 @@
 import { router, usePathname } from "expo-router";
-import { useState } from "react";
 import { View, Text, TouchableOpacity, Pressable } from "react-native";
 
 const pages = [
@@ -18,7 +17,7 @@ export default function Topbar({ onClose }: TopbarProps) {
     <View
       style={{
         position: "absolute",
-        zIndex: 999,
+        zIndex: 9,
         height: 64,
         width: "100%",
         backgroundColor: "white",
@@ -27,7 +26,7 @@ export default function Topbar({ onClose }: TopbarProps) {
         justifyContent: "center",
       }}
     >
-      <Pressable style={{ position: "absolute", right: 20 }} onPress={onClose}>
+      <Pressable style={{ position: "absolute", right: 20, zIndex: 10 }} onPress={onClose}>
         <Text style={{ fontWeight: "bold", fontSize: 18 }} selectable={false}>
           ✕
         </Text>
@@ -36,7 +35,7 @@ export default function Topbar({ onClose }: TopbarProps) {
         style={{
           width: "100%",
           maxWidth: 1350,
-          justifyContent: "space-between",
+          justifyContent: "space-evenly",
           flexDirection: "row",
           alignSelf: "center",
         }}
