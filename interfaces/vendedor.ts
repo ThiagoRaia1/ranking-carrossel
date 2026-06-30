@@ -5,5 +5,6 @@ export default interface Vendedor {
   id: number;
   nome: string;
   fotoPath: ImageSourcePropType;
+  ativo: boolean,
   pedidos?: Pedido[];
 }

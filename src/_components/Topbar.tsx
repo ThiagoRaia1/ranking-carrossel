@@ -5,6 +5,7 @@ const pages = [
   { path: "/", label: "Ranking" },
   { path: "/pages/pedidos", label: "Pedidos" },
   { path: "/pages/vendedores", label: "Vendedores" },
+  { path: "/pages/metas", label: "Metas" },
 ];
 
 interface TopbarProps {
@@ -26,7 +27,13 @@ export default function Topbar({ onClose }: TopbarProps) {
         justifyContent: "center",
       }}
     >
-      <Pressable style={{ position: "absolute", right: 20, zIndex: 10 }} onPress={onClose}>
+      <Pressable style={{
+            position: "absolute",
+            top: 8,
+            right: -2,
+            zIndex: 999,
+            padding: 10,
+          }} onPress={onClose}>
         <Text style={{ fontWeight: "bold", fontSize: 18 }} selectable={false}>
           ✕
         </Text>

@@ -4,15 +4,15 @@ import { useState } from "react";
 import { Pressable, Text, Image, View } from "react-native";
 
 export default function Layout() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isTopbarVisible, setIsTopbarVisible] = useState(true);
 
   return (
-    <View style={{ width: 1200, alignSelf: "center" }}>
-      {isVisible ? (
-        <Topbar onClose={() => setIsVisible(false)} />
+    <View style={{flex: 1, width: 1200, alignSelf: "center" }}>
+      {isTopbarVisible ? (
+        <Topbar onClose={() => setIsTopbarVisible(false)} />
       ) : (
         <Pressable
-          onPress={() => setIsVisible(true)}
+          onPress={() => setIsTopbarVisible(true)}
           style={{
             position: "absolute",
             top: 8,

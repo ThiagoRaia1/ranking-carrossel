@@ -1,16 +1,72 @@
 import { Text, View, Image, StyleSheet } from "react-native";
 import Vendedor from "../../interfaces/vendedor";
 
-export default function Home() {
-  const vendedorIconSize: number = 120;
-  const vendedores: Vendedor[] = [
-    { id: 1, nome: "Andreza", fotoPath: require("@/assets/Andreza.png") },
-    { id: 2, nome: "Celso", fotoPath: require("@/assets/Celso.png") },
-    { id: 3, nome: "Elisângela", fotoPath: require("@/assets/Elisângela.png") },
-    { id: 4, nome: "Lissandra", fotoPath: require("@/assets/Lissandra.png") },
-    { id: 5, nome: "Macikelle", fotoPath: require("@/assets/Macikelle.png") },
-  ];
+export const vendedores: Vendedor[] = [
+  {
+    id: 1,
+    nome: "Andreza",
+    ativo: true,
+    fotoPath: require("@/assets/Andreza.png"),
+  },
+  {
+    id: 2,
+    nome: "Celso",
+    ativo: true,
+    fotoPath: require("@/assets/Celso.png"),
+  },
+  {
+    id: 3,
+    nome: "Elisângela",
+    ativo: true,
+    fotoPath: require("@/assets/Elisângela.png"),
+  },
+  {
+    id: 4,
+    nome: "Lissandra",
+    ativo: true,
+    fotoPath: require("@/assets/Lissandra.png"),
+  },
+  {
+    id: 5,
+    nome: "Macikelle",
+    ativo: true,
+    fotoPath: require("@/assets/Macikelle.png"),
+  },
+  // {
+  //   id: 6,
+  //   nome: "Macikelle",
+  //   ativo: true,
+  //   fotoPath: require("@/assets/Macikelle.png"),
+  // },
+  // {
+  //   id: 7,
+  //   nome: "Macikelle",
+  //   ativo: true,
+  //   fotoPath: require("@/assets/Macikelle.png"),
+  // },
+  // {
+  //   id: 8,
+  //   nome: "Macikelle",
+  //   ativo: true,
+  //   fotoPath: require("@/assets/Macikelle.png"),
+  // },
+  // {
+  //   id: 9,
+  //   nome: "Macikelle",
+  //   ativo: true,
+  //   fotoPath: require("@/assets/Macikelle.png"),
+  // },
+  // {
+  //   id: 10,
+  //   nome: "Macikelle",
+  //   ativo: true,
+  //   fotoPath: require("@/assets/Macikelle.png"),
+  // },
+];
 
+export const vendedorIconSize: number = 120;
+
+export default function Home() {
   const kgColumn = [100, 200, 300, 400, 500];
 
   const styles = StyleSheet.create({
@@ -45,7 +101,7 @@ export default function Home() {
 
     // Começa hoje
     const current = new Date(today);
-    current.setDate(current.getDate() - 1);
+    current.setDate(current.getDate());
 
     while (current <= lastDay) {
       const day = current.getDay(); // 0 = domingo, 6 = sábado
@@ -65,14 +121,13 @@ export default function Home() {
   return (
     <View
       style={{
+        flex: 1,
         justifyContent: "center",
-        height: "95%",
       }}
     >
       <View
         style={{
           flexDirection: "row",
-          width: 1200,
           justifyContent: "space-between",
         }}
       >
