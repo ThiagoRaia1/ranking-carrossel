@@ -66,8 +66,10 @@ export const vendedores: Vendedor[] = [
 
 export const vendedorIconSize: number = 120;
 
-const META_MENSAL = 145000;
-const TOTAL_VENDIDO = 103071;
+export const META_MENSAL = 145000;
+export const META_SEMANAL = META_MENSAL / 4;
+export const META_DIARIA = META_SEMANAL / 5;
+export const TOTAL_VENDIDO = 103071;
 
 export default function Ranking() {
   const kgColumn = [100, 200, 300, 400, 500];

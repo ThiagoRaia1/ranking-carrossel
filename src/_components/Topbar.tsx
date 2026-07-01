@@ -6,6 +6,7 @@ const pages = [
   { path: "/pages/pedidos", label: "Pedidos" },
   { path: "/pages/vendedores", label: "Vendedores" },
   { path: "/pages/metas", label: "Metas" },
+  { path: "/pages/progresso", label: "Progresso" },
 ];
 
 interface TopbarProps {

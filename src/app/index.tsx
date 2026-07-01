@@ -1,13 +1,13 @@
 import { Animated, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
-import Pedidos from "./pages/pedidos";
 import Ranking from "./pages/ranking";
-import Vendedores from "./pages/vendedores";
+import Metas from "./pages/metas";
+import Progresso from "./pages/progresso";
 
 const pages = [
   <Ranking key="ranking" />,
-  <Pedidos key="pedidos" />,
-  <Vendedores key="vendedores" />,
+  <Metas key="metas" />,
+  <Progresso key="progresso" />,
 ];
 
 export default function Home() {
