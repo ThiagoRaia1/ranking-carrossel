@@ -6,9 +6,9 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import { vendedores, vendedorIconSize } from "@/app";
 import Feather from "@expo/vector-icons/Feather";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { vendedores, vendedorIconSize } from "../ranking";
 
 const COLUNA_VENDEDOR = 800;
 const COLUNA_ACOES = 400;
@@ -39,8 +39,21 @@ export default function Vendedores() {
           paddingLeft: 20,
         }}
       >
-        <Text style={{ fontSize: 26, fontWeight: "bold", textAlign: "center" }}>Vendedor</Text>
-        <TouchableOpacity style={{position: "absolute"}}><Entypo name="circle-with-plus" size={40} color="green" /></TouchableOpacity>
+        <Text style={{ fontSize: 26, fontWeight: "bold", textAlign: "center" }}>
+          Vendedor
+        </Text>
+        <TouchableOpacity
+          style={{
+            position: "absolute",
+            backgroundColor: "white",
+            borderRadius: 400,
+            borderColor: "black",
+            borderWidth: 1,
+            paddingHorizontal: 2,
+          }}
+        >
+          <Entypo name="circle-with-plus" size={40} color="green" />
+        </TouchableOpacity>
       </View>
 
       <View

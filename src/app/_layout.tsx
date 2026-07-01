@@ -7,7 +7,7 @@ export default function Layout() {
   const [isTopbarVisible, setIsTopbarVisible] = useState(true);
 
   return (
-    <View style={{flex: 1, width: 1200, alignSelf: "center" }}>
+    <View style={{flex: 1, width: 1200, alignSelf: "center", overflow: "hidden" }}>
       {isTopbarVisible ? (
         <Topbar onClose={() => setIsTopbarVisible(false)} />
       ) : (
