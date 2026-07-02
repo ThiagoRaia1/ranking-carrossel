@@ -1,8 +1,28 @@
 import ProgressBar from "@/_components/ProgressBar";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { META_MENSAL, vendedores } from "../ranking";
+import { META_MENSAL, TOTAL_VENDIDO } from "../ranking";
 
 const IMAGE_SIZE: number = 200;
+
+const progresso = TOTAL_VENDIDO / META_MENSAL;
+
+const getImageStyle = (indice: number) => {
+  let ativo = false;
+
+  if (progresso >= 1) {
+    ativo = indice === 2;
+  } else if (progresso >= 0.5) {
+    ativo = indice === 1;
+  } else {
+    ativo = indice === 0;
+  }
+
+  return {
+    width: ativo ? 240 : 180,
+    height: ativo ? 240 : 180,
+    resizeMode: "contain" as const,
+  };
+};
 
 export default function Progresso() {
   const styles = StyleSheet.create({
@@ -13,7 +33,7 @@ export default function Progresso() {
       alignItems: "center",
       padding: 20,
       gap: 24,
-      marginBottom: 120
+      marginBottom: 120,
     },
     frasePrincipal: {
       fontSize: 40,
@@ -49,23 +69,31 @@ export default function Progresso() {
           style={{
             flexDirection: "row",
             width: "100%",
-            justifyContent: "space-between",
+            alignItems: "flex-end",
           }}
         >
-          <Image
-            source={require("@/assets/Mascote_Triste.png")}
-            style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
-          />
-          <Image
-            source={require("@/assets/Mascote_Pensativo.png")}
-            style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
-          />
-          <Image
-            source={require("@/assets/Mascote_Feliz.png")}
-            style={{ width: IMAGE_SIZE, height: IMAGE_SIZE }}
-          />
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Image
+              source={require("@/assets/Mascote_Triste.png")}
+              style={getImageStyle(0)}
+            />
+          </View>
+
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Image
+              source={require("@/assets/Mascote_Pensativo.png")}
+              style={getImageStyle(1)}
+            />
+          </View>
+
+          <View style={{ flex: 1, alignItems: "center" }}>
+            <Image
+              source={require("@/assets/Mascote_Feliz.png")}
+              style={getImageStyle(2)}
+            />
+          </View>
         </View>
-        <ProgressBar meta={META_MENSAL} realizado={85700} />
+        <ProgressBar meta={META_MENSAL} realizado={TOTAL_VENDIDO} />
         <View
           style={{
             flexDirection: "row",

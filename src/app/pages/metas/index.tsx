@@ -1,14 +1,17 @@
 import { StyleSheet, Text, View } from "react-native";
-import { META_DIARIA, META_MENSAL, META_SEMANAL } from "../ranking";
 import {
-  AntDesign,
-  FontAwesome,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+  META_DIARIA,
+  META_MENSAL,
+  META_SEMANAL,
+  TOTAL_VENDIDO,
+} from "../ranking";
+import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import ProgressBar from "@/_components/ProgressBar";
 
 const ICON_SIZE: number = 60;
 const ICON_COLOR: string = "green";
+const KG_VENDIDO_SEMANA: number = 28290.63;
+const KG_VENDIDO_DIA: number = 4740.0;
 
 export default function Metas() {
   const styles = StyleSheet.create({
@@ -48,11 +51,22 @@ export default function Metas() {
     progressBarContainer: {
       flex: 4,
       justifyContent: "center",
+      marginTop: 20,
     },
+    progressBarSubtitle: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+    },
+    progressBarSubtitleText: {
+      fontSize: 18,
+      fontWeight: "bold",
+    },
+    totalVendidoContainer: { alignItems: "center" },
   });
 
   return (
     <View style={styles.mainContainer}>
+      {/* META MENSAL */}
       <View style={styles.metaContainer}>
         <MaterialCommunityIcons
           name="target"
@@ -66,10 +80,21 @@ export default function Metas() {
         </View>
 
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_MENSAL} realizado={99687.5} />
+          <ProgressBar meta={META_MENSAL} realizado={TOTAL_VENDIDO} />
+          <View style={styles.progressBarSubtitle}>
+            <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
+            <View style={styles.totalVendidoContainer}>
+              <Text style={styles.progressBarSubtitleText}>
+                {TOTAL_VENDIDO.toFixed(1)} Kg
+              </Text>
+              <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
+            </View>
+            <Text style={styles.progressBarSubtitleText}>{META_MENSAL} Kg</Text>
+          </View>
         </View>
       </View>
 
+      {/* META SEMANAL */}
       <View style={styles.metaContainer}>
         <MaterialCommunityIcons
           name="calendar-blank-outline"
@@ -82,10 +107,23 @@ export default function Metas() {
           <Text style={styles.metaTitleText}>{META_SEMANAL} Kg</Text>
         </View>
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_SEMANAL} realizado={26290.63} />
+          <ProgressBar meta={META_SEMANAL} realizado={KG_VENDIDO_SEMANA} />
+          <View style={styles.progressBarSubtitle}>
+            <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
+            <View style={styles.totalVendidoContainer}>
+              <Text style={styles.progressBarSubtitleText}>
+                {KG_VENDIDO_SEMANA.toFixed(1)} Kg
+              </Text>
+              <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
+            </View>
+            <Text style={styles.progressBarSubtitleText}>
+              {META_SEMANAL} Kg
+            </Text>
+          </View>
         </View>
       </View>
 
+      {/* META DIARIA */}
       <View style={styles.metaContainer}>
         <AntDesign
           name="clock-circle"
@@ -95,11 +133,21 @@ export default function Metas() {
         />
         <View style={styles.metaTitle}>
           <Text style={styles.metaTitleText}>META DIÁRIA: </Text>
-          <Text style={styles.metaTitleText}>7250 Kg</Text>
+          <Text style={styles.metaTitleText}>{META_DIARIA} Kg</Text>
         </View>
 
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_DIARIA} realizado={4740} />
+          <ProgressBar meta={META_DIARIA} realizado={KG_VENDIDO_DIA} />
+          <View style={styles.progressBarSubtitle}>
+            <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
+            <View style={styles.totalVendidoContainer}>
+              <Text style={styles.progressBarSubtitleText}>
+                {KG_VENDIDO_DIA.toFixed(1)} Kg
+              </Text>
+              <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
+            </View>
+            <Text style={styles.progressBarSubtitleText}>{META_DIARIA} Kg</Text>
+          </View>
         </View>
       </View>
     </View>

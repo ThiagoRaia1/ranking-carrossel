@@ -29,10 +29,10 @@ export default function ProgressBar({
             width: `${porcentagem}%`,
           },
         ]}
-      />
-
-      <View style={styles.labelContainer}>
-        <Text style={styles.label}>{porcentagem.toFixed(1)}%</Text>
+      >
+        <View style={styles.labelContainer}>
+          <Text style={styles.label}>{porcentagem.toFixed(1)}%</Text>
+        </View>
       </View>
     </View>
   );
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
   labelContainer: {
     ...StyleSheet.absoluteFill,
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-end",
+    paddingRight: 12,
   },
 
   label: {
