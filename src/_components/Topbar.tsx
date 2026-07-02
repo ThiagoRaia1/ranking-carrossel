@@ -4,10 +4,10 @@ import { View, Text, TouchableOpacity, Pressable } from "react-native";
 const pages = [
   { path: "/", label: "Home" },
   { path: "/pages/ranking", label: "Ranking" },
-  { path: "/pages/pedidos", label: "Pedidos" },
-  { path: "/pages/vendedores", label: "Vendedores" },
   { path: "/pages/metas", label: "Metas" },
   { path: "/pages/progresso", label: "Progresso" },
+  { path: "/pages/pedidos", label: "Pedidos" },
+  { path: "/pages/vendedores", label: "Vendedores" },
 ];
 
 interface TopbarProps {

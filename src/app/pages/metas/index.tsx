@@ -30,7 +30,7 @@ export default function Metas() {
       paddingVertical: 40,
       paddingHorizontal: 12,
       borderRadius: 8,
-      boxShadow: "0px 0px 4px rgba(0, 0, 0, 0.2)",
+      boxShadow: "0px 0px 12px rgba(42, 134, 53, 0.3)",
     },
     icon: {
       backgroundColor: "rgba(0, 255, 0, 0.1)",

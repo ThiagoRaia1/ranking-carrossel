@@ -10,8 +10,8 @@ import Feather from "@expo/vector-icons/Feather";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { vendedores, vendedorIconSize } from "../ranking";
 
-const COLUNA_VENDEDOR = 800;
-const COLUNA_ACOES = 400;
+export const COLUNA_VENDEDOR = 800;
+export const COLUNA_ACOES = 400;
 
 export default function Vendedores() {
   const styles = StyleSheet.create({
