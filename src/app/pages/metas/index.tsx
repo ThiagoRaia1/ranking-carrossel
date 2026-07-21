@@ -1,12 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
-import {
-  META_DIARIA,
-  META_MENSAL,
-  META_SEMANAL,
-  TOTAL_VENDIDO,
-} from "../ranking";
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
 import ProgressBar from "@/_components/ProgressBar";
+import metas from "@/data/metas.json";
+import { useEffect, useState } from "react";
+import { getMetas } from "../../../../services/metas";
 
 const ICON_SIZE: number = 60;
 const ICON_COLOR: string = "green";
@@ -14,6 +11,10 @@ const KG_VENDIDO_SEMANA: number = 28290.63;
 const KG_VENDIDO_DIA: number = 4740.0;
 
 export default function Metas() {
+  const [metaMensal, setMetaMensal] = useState("");
+  const [metaSemanal, setMetaSemanal] = useState("");
+  const [metaDiaria, setMetaDiaria] = useState("");
+  const [totalVendido, setTotalVendido] = useState<number>(0);
   const styles = StyleSheet.create({
     mainContainer: {
       flex: 1,
@@ -64,6 +65,21 @@ export default function Metas() {
     totalVendidoContainer: { alignItems: "center" },
   });
 
+  useEffect(() => {
+    async function carregarMetas() {
+      try {
+        const metas = await getMetas();
+        console.log(metas);
+
+        setMetaMensal(metas.mensal.toString());
+        setMetaSemanal(metas.semanal.toString());
+        setMetaDiaria(metas.diaria.toString());
+      } catch (error: any) {}
+    }
+
+    carregarMetas();
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
       {/* META MENSAL */}
@@ -76,20 +92,20 @@ export default function Metas() {
         />
         <View style={styles.metaTitle}>
           <Text style={styles.metaTitleText}>META MENSAL: </Text>
-          <Text style={styles.metaTitleText}>{META_MENSAL} Kg</Text>
+          <Text style={styles.metaTitleText}>{metaMensal} Kg</Text>
         </View>
 
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_MENSAL} realizado={TOTAL_VENDIDO} />
+          <ProgressBar meta={metas.mensal} realizado={totalVendido} />
           <View style={styles.progressBarSubtitle}>
             <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
             <View style={styles.totalVendidoContainer}>
               <Text style={styles.progressBarSubtitleText}>
-                {TOTAL_VENDIDO.toFixed(1)} Kg
+                {totalVendido.toFixed(1)} Kg
               </Text>
               <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
             </View>
-            <Text style={styles.progressBarSubtitleText}>{META_MENSAL} Kg</Text>
+            <Text style={styles.progressBarSubtitleText}>{metaMensal} Kg</Text>
           </View>
         </View>
       </View>
@@ -104,10 +120,10 @@ export default function Metas() {
         />
         <View style={styles.metaTitle}>
           <Text style={styles.metaTitleText}>META SEMANAL:</Text>
-          <Text style={styles.metaTitleText}>{META_SEMANAL} Kg</Text>
+          <Text style={styles.metaTitleText}>{metas.semanal} Kg</Text>
         </View>
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_SEMANAL} realizado={KG_VENDIDO_SEMANA} />
+          <ProgressBar meta={metas.semanal} realizado={KG_VENDIDO_SEMANA} />
           <View style={styles.progressBarSubtitle}>
             <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
             <View style={styles.totalVendidoContainer}>
@@ -116,9 +132,7 @@ export default function Metas() {
               </Text>
               <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
             </View>
-            <Text style={styles.progressBarSubtitleText}>
-              {META_SEMANAL} Kg
-            </Text>
+            <Text style={styles.progressBarSubtitleText}>{metaSemanal} Kg</Text>
           </View>
         </View>
       </View>
@@ -133,11 +147,11 @@ export default function Metas() {
         />
         <View style={styles.metaTitle}>
           <Text style={styles.metaTitleText}>META DIÁRIA: </Text>
-          <Text style={styles.metaTitleText}>{META_DIARIA} Kg</Text>
+          <Text style={styles.metaTitleText}>{metas.diaria} Kg</Text>
         </View>
 
         <View style={styles.progressBarContainer}>
-          <ProgressBar meta={META_DIARIA} realizado={KG_VENDIDO_DIA} />
+          <ProgressBar meta={metas.diaria} realizado={KG_VENDIDO_DIA} />
           <View style={styles.progressBarSubtitle}>
             <Text style={styles.progressBarSubtitleText}>0 Kg</Text>
             <View style={styles.totalVendidoContainer}>
@@ -146,7 +160,7 @@ export default function Metas() {
               </Text>
               <Text style={styles.progressBarSubtitleText}>Total Vendido</Text>
             </View>
-            <Text style={styles.progressBarSubtitleText}>{META_DIARIA} Kg</Text>
+            <Text style={styles.progressBarSubtitleText}>{metaDiaria} Kg</Text>
           </View>
         </View>
       </View>

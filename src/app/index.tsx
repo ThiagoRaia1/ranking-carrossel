@@ -24,13 +24,13 @@ export default function Home() {
     const interval = setInterval(() => {
       Animated.timing(translateX, {
         toValue: -width,
-        duration: 700,
+        duration: 1000,
         useNativeDriver: true,
       }).start(() => {
         setCurrentPage((p) => (p + 1) % pages.length);
         translateX.setValue(0);
       });
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [currentPage, width]);

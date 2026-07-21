@@ -5,6 +5,7 @@ const pages = [
   { path: "/", label: "Home" },
   { path: "/pages/ranking", label: "Ranking" },
   { path: "/pages/metas", label: "Metas" },
+  { path: "/pages/metas/editar", label: "Editar Metas" },
   { path: "/pages/progresso", label: "Progresso" },
   { path: "/pages/pedidos", label: "Pedidos" },
   { path: "/pages/vendedores", label: "Vendedores" },

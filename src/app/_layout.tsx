@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Pressable, Text, Image, View } from "react-native";
 
 export default function Layout() {
-  const [isTopbarVisible, setIsTopbarVisible] = useState(true);
+  const [isTopbarVisible, setIsTopbarVisible] = useState(false);
 
   return (
     <View style={{flex: 1, width: 1200, alignSelf: "center", overflow: "hidden" }}>

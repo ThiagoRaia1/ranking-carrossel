@@ -9,11 +9,19 @@ import {
 import Feather from "@expo/vector-icons/Feather";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import { vendedores, vendedorIconSize } from "../ranking";
+import { createVendedor, getVendedores } from "../../../../services/vendedores";
+import AdicionarVendedorModal from "./form";
+import { useEffect, useState } from "react";
+import { router } from "expo-router";
+import { Vendedor } from "../../../../interfaces/vendedor";
 
 export const COLUNA_VENDEDOR = 800;
 export const COLUNA_ACOES = 400;
 
 export default function Vendedores() {
+  const [modalVisible, setModalVisible] = useState(false);
+  const [vendedores, setVendedores] = useState<Vendedor[]>()
+
   const styles = StyleSheet.create({
     button: {
       paddingVertical: 6,
@@ -51,6 +59,7 @@ export default function Vendedores() {
             borderWidth: 1,
             paddingHorizontal: 2,
           }}
+          onPress={() => setModalVisible(true)}
         >
           <Entypo name="circle-with-plus" size={40} color="green" />
         </TouchableOpacity>
@@ -69,6 +78,15 @@ export default function Vendedores() {
       </View>
     </View>
   );
+
+  useEffect(() => {
+    const getData = async () => {
+      const resultado = await getVendedores()
+      setVendedores(resultado)
+    }
+
+    getData()
+  }, [])
 
   return (
     <View
@@ -171,6 +189,15 @@ export default function Vendedores() {
             </View>
           </View>
         )}
+      />
+      <AdicionarVendedorModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSave={async (nome) => {
+          const resultado = await createVendedor(nome);
+          alert(resultado.id)
+          router.push("/pages/vendedores")
+        }}
       />
     </View>
   );

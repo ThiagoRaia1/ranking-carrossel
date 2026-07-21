@@ -9,6 +9,8 @@ import {
 import { vendedores, vendedorIconSize } from "../ranking";
 import { Entypo, Feather } from "@expo/vector-icons";
 import Pedido from "../../../../interfaces/pedido";
+import AdicionarPedidoModal from "./form";
+import { useState } from "react";
 
 const pedidos: Pedido[] = [
   {
@@ -90,6 +92,8 @@ const COLUNA_VENDEDOR = 800;
 const COLUNA_ACOES = 400;
 
 export default function Pedidos() {
+  const [modalVisible, setModalVisible] = useState(false);
+
   const styles = StyleSheet.create({
     button: {
       paddingVertical: 6,
@@ -129,6 +133,7 @@ export default function Pedidos() {
             borderRadius: 400,
             paddingHorizontal: 2,
           }}
+          onPress={() => setModalVisible(true)}
         >
           <Entypo name="circle-with-plus" size={40} color="green" />
         </TouchableOpacity>
@@ -149,117 +154,136 @@ export default function Pedidos() {
   );
 
   return (
-    <FlatList
-      data={pedidos}
-      keyExtractor={(item) => item.numeroPedido.toString()}
-      ListHeaderComponent={renderHeader}
-      stickyHeaderIndices={[0]}
-      style={{
-        width: "100%",
-        maxWidth: 1200,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderRadius: 8,
-        marginBottom: 20,
-      }}
-      renderItem={({ item: pedido }) => (
-        <View
-          style={{
-            flexDirection: "row",
-            height: 140,
-            borderBottomWidth: 1,
-            borderColor: "#ccc",
-          }}
-        >
-          {/* Foto + Nome */}
-          <View
-            style={{
-              width: COLUNA_VENDEDOR,
-              flexDirection: "row",
-              alignItems: "center",
-              paddingHorizontal: 20,
-              gap: 20,
-              backgroundColor: "#C0E6F5",
-            }}
-          >
-            <Image
-              source={pedido.vendedor.fotoPath}
-              style={{
-                width: vendedorIconSize,
-                height: vendedorIconSize,
-                borderRadius: 400,
-                borderWidth: 1,
-                backgroundColor: "white",
-              }}
-              resizeMode="contain"
-            />
-
-            <Text
-              style={{
-                fontSize: 60,
-                fontWeight: "600",
-              }}
-            >
-              {pedido.vendedor.nome}
-            </Text>
-          </View>
-
-          {/* Ações */}
+    <>
+      <FlatList
+        data={pedidos}
+        keyExtractor={(item) => item.numeroPedido.toString()}
+        ListHeaderComponent={renderHeader}
+        stickyHeaderIndices={[0]}
+        style={{
+          width: "100%",
+          maxWidth: 1200,
+          borderWidth: 1,
+          borderColor: "#ccc",
+          borderRadius: 8,
+          marginBottom: 20,
+        }}
+        renderItem={({ item: pedido }) => (
           <View
             style={{
               flexDirection: "row",
-              width: COLUNA_ACOES,
-              justifyContent: "center",
-              alignItems: "center",
-              borderLeftWidth: 1,
+              height: 140,
+              borderBottomWidth: 1,
               borderColor: "#ccc",
-              paddingVertical: 12,
-              paddingHorizontal: 20,
-              gap: 12,
             }}
           >
+            {/* Foto + Nome */}
             <View
               style={{
-                flex: 1,
-                height: "100%",
-                justifyContent: "center",
+                width: COLUNA_VENDEDOR,
+                flexDirection: "row",
                 alignItems: "center",
+                paddingHorizontal: 20,
+                gap: 20,
+                backgroundColor: "#C0E6F5",
               }}
             >
-              <Text style={[styles.pedidoInfoText, { fontWeight: "bold" }]}>
-                Pedido #{pedido.numeroPedido}
-              </Text>
-              <Text style={styles.pedidoInfoText}>
-                Peso: {pedido.peso.toFixed(2)} Kg
-                <br />
-                Valor:{" "}
-                {pedido.valor.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
+              <Image
+                source={pedido.vendedor.fotoPath}
+                style={{
+                  width: vendedorIconSize,
+                  height: vendedorIconSize,
+                  borderRadius: 400,
+                  borderWidth: 1,
+                  backgroundColor: "white",
+                }}
+                resizeMode="contain"
+              />
+
+              <Text
+                style={{
+                  fontSize: 60,
+                  fontWeight: "600",
+                }}
+              >
+                {pedido.vendedor.nome}
               </Text>
             </View>
-            <View style={{ gap: 4 }}>
-              <TouchableOpacity
-                style={[styles.button, { backgroundColor: "green" }]}
-              >
-                <Feather name="edit" size={ACTION_BUTTON_SIZE} color="white" />
-              </TouchableOpacity>
 
-              <TouchableOpacity
-                style={[
-                  styles.button,
-                  {
-                    backgroundColor: "red",
-                  },
-                ]}
+            {/* Ações */}
+            <View
+              style={{
+                flexDirection: "row",
+                width: COLUNA_ACOES,
+                justifyContent: "center",
+                alignItems: "center",
+                borderLeftWidth: 1,
+                borderColor: "#ccc",
+                paddingVertical: 12,
+                paddingHorizontal: 20,
+                gap: 12,
+              }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  height: "100%",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                <Feather name="trash" size={ACTION_BUTTON_SIZE} color="white" />
-              </TouchableOpacity>
+                <Text style={[styles.pedidoInfoText, { fontWeight: "bold" }]}>
+                  Pedido #{pedido.numeroPedido}
+                </Text>
+                <Text style={styles.pedidoInfoText}>
+                  Peso: {pedido.peso.toFixed(2)} Kg
+                  <br />
+                  Valor:{" "}
+                  {pedido.valor.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </Text>
+              </View>
+              <View style={{ gap: 4 }}>
+                <TouchableOpacity
+                  style={[styles.button, { backgroundColor: "green" }]}
+                >
+                  <Feather
+                    name="edit"
+                    size={ACTION_BUTTON_SIZE}
+                    color="white"
+                  />
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  style={[
+                    styles.button,
+                    {
+                      backgroundColor: "red",
+                    },
+                  ]}
+                >
+                  <Feather
+                    name="trash"
+                    size={ACTION_BUTTON_SIZE}
+                    color="white"
+                  />
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
-        </View>
-      )}
-    />
+        )}
+      />
+
+      <AdicionarPedidoModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSave={(pedido) => {
+          console.log(pedido);
+          // chamar createPedido(pedido)
+        }}
+      />
+    </>
   );
 }
